@@ -53,10 +53,10 @@ def classify_autogluon(csv_file,savepath = './mid/autogluon_results',label_colum
     #     df_feature_with_label = pd.merge(task_df[['record',label_column,'age','gender','subject_id']], X, on='record', how='left')
     #     gss = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
     if 'subject_id' not in task_df.columns:
-        df_feature_with_label = pd.merge(task_df[['record',label_column]], X, on='record', how='left')
+        df_feature_with_label = pd.merge(task_df[['record',label_column,'age','gender']], X, on='record', how='left')
         gss = ShuffleSplit(n_splits=1, test_size=test_size, random_state=random_state)
     else:
-        df_feature_with_label = pd.merge(task_df[['record',label_column,'subject_id']], X, on='record', how='left')
+        df_feature_with_label = pd.merge(task_df[['record',label_column,'subject_id','age','gender']], X, on='record', how='left')
         gss = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
 
     #print("4️⃣ merge 后:", len(df_feature_with_label))
